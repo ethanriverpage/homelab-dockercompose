@@ -1,0 +1,28 @@
+version: "3.5"
+
+services:
+  qbitvpn:
+    image: binhex/arch-qbittorrentvpn
+    privileged: true
+    container_name: qbitvpn
+    volumes:
+      - config:/config
+      - /srv/a5069ef4-c129-4ce4-9de6-51356a6b18b2/server/data:/data
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8080:8080
+      - 8118:8118
+    environment:
+      - VPN_ENABLED=yes
+      - VPN_USER=
+      - VPN_PASS=
+      - VPN_PROV=
+      - VPN_CLIENT=wireguard
+      - STRICT_PORT_FORWARD=yes
+      - LAN_NETWORK=10.0.0.0/24
+    restart: always
+    
+volumes:
+  config:

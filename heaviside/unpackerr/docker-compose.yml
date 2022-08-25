@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  unpackerr:
+    image: golift/unpackerr
+    container_name: unpackerr
+    volumes:
+      - /etc/unpackerr.conf:/etc/unpackerr/unpackerr.conf
+      - /srv/a5069ef4-c129-4ce4-9de6-51356a6b18b2/server/data:/data
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    user: ${PUID}:${PGID}
+    environment: 
+      - TZ=${TZ}
